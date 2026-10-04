@@ -8,6 +8,7 @@ const filterSelect = document.querySelector("#filter");
 const sortSelect = document.querySelector("#sort");
 const cardGrid = document.querySelector("#results");
 const emptyState = document.querySelector("#empty-state");
+const resultsCount = document.querySelector("#results-count");
 
 // =================================================
 // State
@@ -132,6 +133,8 @@ function updateBooks() {
   filteredBooks = searchBooks(filteredBooks);
   filteredBooks = sortBooks(filteredBooks);
 
+  resultsCount.textContent = `${filteredBooks.length} books`;
+
   renderCardList(filteredBooks);
 }
 
@@ -197,12 +200,54 @@ sortSelect.addEventListener("change", (e) => {
 });
 
 // =================================================
+// Calculate Summary
+// =================================================
+function calculateSummary(books) {
+  const totalBooks = books.length;
+  const totalPages = books.reduce((sum, book) => sum + book.pages, 0);
+  const totalFinishedBooks = books.filter(
+    (book) => book.status === "Finished",
+  ).length;
+  const totalReadingBooks = books.filter(
+    (book) => book.status === "Reading",
+  ).length;
+
+  return {
+    totalBooks,
+    totalPages,
+    totalFinishedBooks,
+    totalReadingBooks,
+  };
+}
+
+function displaySummary(summary) {
+  const summaryGrid = document.querySelector(".summary");
+  summaryGrid.innerHTML = `
+  <div class="summary-card"><p>Total Books:</p> <span>${summary.totalBooks}</span>
+  </div>
+  <div class="summary-card"><p>Total Pages:</p> <span>${summary.totalPages}</span>
+  </div>
+  <div class="summary-card">
+  <p>Finished:</p> <span>${summary.totalFinishedBooks}</span>
+  </div>
+  <div class="summary-card">
+   <p>Total Books being read:</p> <span>${summary.totalReadingBooks}</span>
+  </div>  
+  `;
+}
+
+// =================================================
 // Initialization
 // =================================================
 function init() {
   createFilterSelectOptions();
   createSortSelectOptions();
   renderCardList(books);
+
+  resultsCount.textContent = `${books.length} books`;
+
+  const summary = calculateSummary(books);
+  displaySummary(summary);
 }
 
 init();
