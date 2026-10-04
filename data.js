@@ -1,0 +1,14 @@
+const books = [
+  { id: 1, title: "Project Hail Mary", author: "Andy Weir", genre: "Science Fiction", pages: 496, status: "Finished", rating: 5 },
+  { id: 2, title: "The Hobbit", author: "J.R.R. Tolkien", genre: "Fantasy", pages: 310, status: "Finished", rating: 5 },
+  { id: 3, title: "Atomic Habits", author: "James Clear", genre: "Self Development", pages: 320, status: "Reading", rating: null },
+  { id: 4, title: "The Thursday Murder Club", author: "Richard Osman", genre: "Mystery", pages: 368, status: "To Read", rating: null },
+  { id: 5, title: "Educated", author: "Tara Westover", genre: "Memoir", pages: 334, status: "Finished", rating: 4 },
+  { id: 6, title: "Dune", author: "Frank Herbert", genre: "Science Fiction", pages: 688, status: "Reading", rating: null },
+  { id: 7, title: "The House in the Cerulean Sea", author: "TJ Klune", genre: "Fantasy", pages: 394, status: "To Read", rating: null },
+  { id: 8, title: "Deep Work", author: "Cal Newport", genre: "Productivity", pages: 304, status: "Finished", rating: 4 },
+  { id: 9, title: "Pachinko", author: "Min Jin Lee", genre: "Historical Fiction", pages: 496, status: "To Read", rating: null },
+  { id: 10, title: "The Martian", author: "Andy Weir", genre: "Science Fiction", pages: 369, status: "Finished", rating: 5 },
+  { id: 11, title: "Tomorrow, and Tomorrow, and Tomorrow", author: "Gabrielle Zevin", genre: "Fiction", pages: 401, status: "Reading", rating: null },
+  { id: 12, title: "The Silent Patient", author: "Alex Michaelides", genre: "Mystery", pages: 336, status: "Finished", rating: 3 }
+];
