@@ -128,14 +128,23 @@ function renderCardList(books) {
 function updateBooks() {
   let filteredBooks = [...books];
 
-  // filteredBooks = filterByStatus(filteredBooks);
-  // filteredBooks = filterBooks(filteredBooks);
+  filteredBooks = filterBooks(filteredBooks);
   // filteredBooks = searchBooks(filteredBooks);
   // filteredBooks = sortBooks(filteredBooks);
 
   console.log(filterBooks);
 
   renderCardList(filteredBooks);
+}
+
+function filterBooks(books) {
+  if (state.filterBy === "all") {
+    return books;
+  }
+
+  const [filterType, filterValue] = state.filterBy.split(":");
+
+  return books.filter((book) => book[filterType] === filterValue);
 }
 
 // =================================================
