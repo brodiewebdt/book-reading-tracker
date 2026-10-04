@@ -34,7 +34,7 @@ function createFilterSelectOptions() {
 
   uniqueGenres.forEach((genre) => {
     const option = document.createElement("option");
-    option.value = genre.toLowerCase();
+    option.value = `genre:${genre}`;
     option.textContent = genre;
 
     genreGroup.append(option);
@@ -47,7 +47,7 @@ function createFilterSelectOptions() {
 
   uniqueStatus.forEach((status) => {
     const statusOption = document.createElement("option");
-    statusOption.value = status.toLowerCase();
+    statusOption.value = `status:${status}`;
     statusOption.textContent = status;
 
     statusGroup.append(statusOption);
@@ -126,7 +126,16 @@ function renderCardList(books) {
 // =================================================
 // Group Filter Function
 function updateBooks() {
-  console.log(`updateBooks called`);
+  let filteredBooks = [...books];
+
+  // filteredBooks = filterByStatus(filteredBooks);
+  // filteredBooks = filterBooks(filteredBooks);
+  // filteredBooks = searchBooks(filteredBooks);
+  // filteredBooks = sortBooks(filteredBooks);
+
+  console.log(filterBooks);
+
+  renderCardList(filteredBooks);
 }
 
 // =================================================
