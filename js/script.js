@@ -21,6 +21,62 @@ const state = {
 };
 
 // =================================================
+// Filter Select Options
+// =================================================
+function createFilterSelectOptions() {
+  const genreGroup = document.createElement("optgroup");
+  genreGroup.label = "Genres";
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "All";
+  filterSelect.appendChild(allOption);
+  const uniqueGenres = [...new Set(books.map((book) => book.genre))];
+
+  uniqueGenres.forEach((genre) => {
+    const option = document.createElement("option");
+    option.value = genre.toLowerCase();
+    option.textContent = genre;
+
+    genreGroup.append(option);
+  });
+
+  const statusGroup = document.createElement("optgroup");
+  statusGroup.label = "Reading Status";
+
+  const uniqueStatus = [...new Set(books.map((book) => book.status))];
+
+  uniqueStatus.forEach((status) => {
+    const statusOption = document.createElement("option");
+    statusOption.value = status.toLowerCase();
+    statusOption.textContent = status;
+
+    statusGroup.append(statusOption);
+  });
+
+  filterSelect.append(genreGroup, statusGroup);
+}
+
+// =================================================
+// Sort Select Options
+// =================================================
+function createSortSelectOptions() {
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "default";
+  defaultOption.textContent = "Default";
+  sortSelect.appendChild(defaultOption);
+
+  const titleOption = document.createElement("option");
+  titleOption.value = "title";
+  titleOption.textContent = "Title A-Z";
+  sortSelect.appendChild(titleOption);
+
+  const pageCountOption = document.createElement("option");
+  pageCountOption.value = "pages";
+  pageCountOption.textContent = "Number of Pages";
+  sortSelect.appendChild(pageCountOption);
+}
+
+// =================================================
 // Card Creation
 // =================================================
 function createBookCardTemplate(book) {
@@ -102,6 +158,8 @@ sortSelect.addEventListener("change", (e) => {
 // Initialization
 // =================================================
 function init() {
+  createFilterSelectOptions();
+  createSortSelectOptions();
   renderCardList(books);
 }
 
