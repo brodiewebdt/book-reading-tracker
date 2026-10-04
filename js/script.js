@@ -130,9 +130,7 @@ function updateBooks() {
 
   filteredBooks = filterBooks(filteredBooks);
   filteredBooks = searchBooks(filteredBooks);
-  // filteredBooks = sortBooks(filteredBooks);
-
-  console.log(filterBooks);
+  filteredBooks = sortBooks(filteredBooks);
 
   renderCardList(filteredBooks);
 }
@@ -153,6 +151,24 @@ function searchBooks(books) {
       book.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
       book.author.toLowerCase().includes(state.searchTerm.toLowerCase()),
   );
+}
+
+function sortBooks(books) {
+  const sortedBooks = [...books];
+
+  if (state.sortBy === "default") {
+    return books;
+  }
+
+  if (state.sortBy === "title") {
+    sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if (state.sortBy === "pages") {
+    sortedBooks.sort((a, b) => a.pages - b.pages);
+  }
+
+  return sortedBooks;
 }
 
 // =================================================
