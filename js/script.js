@@ -3,8 +3,22 @@ import { books } from "../data.js";
 // =================================================
 // DOM References
 // =================================================
+const searchInput = document.querySelector("#search");
+const filterSelect = document.querySelector("#filter");
+const sortSelect = document.querySelector("#sort");
 const cardGrid = document.querySelector("#results");
 const emptyState = document.querySelector("#empty-state");
+
+// =================================================
+// State
+// =================================================
+const state = {
+  books,
+  searchTerm: "",
+  filterBy: "all",
+  sortBy: "default",
+  currentStatus: "all",
+};
 
 // =================================================
 // Card Creation
@@ -27,7 +41,7 @@ function createBookCardTemplate(book) {
         </p>
         <p>
           <span class="detail-label">Rating: </span>
-          <span class="detail-value">${book.ratings}</span>
+          <span class="detail-value">${book.rating === null ? "Unrated" : book.rating}</span>
         </p>
         <p>
           <span class="detail-label">Status: </span>
@@ -50,6 +64,39 @@ function renderCardList(books) {
     cardGrid.innerHTML = books.map(createBookCardTemplate).join("");
   });
 }
+
+// =================================================
+// Filtering and Sorting
+// =================================================
+// Group Filter Function
+function updateBooks() {
+  console.log(`updateBooks called`);
+}
+
+// =================================================
+// Event Listeners
+// =================================================
+
+filterSelect.addEventListener("change", (e) => {
+  state.filterBy = e.target.value;
+  updateBooks();
+
+  console.log(state.filterBy);
+});
+
+searchInput.addEventListener("input", (e) => {
+  state.searchTerm = e.target.value;
+  updateBooks();
+
+  console.log(state.searchTerm);
+});
+
+sortSelect.addEventListener("change", (e) => {
+  state.sortBy = e.target.value;
+  updateBooks();
+
+  console.log(state.sortBy);
+});
 
 // =================================================
 // Initialization
