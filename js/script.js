@@ -129,7 +129,7 @@ function updateBooks() {
   let filteredBooks = [...books];
 
   filteredBooks = filterBooks(filteredBooks);
-  // filteredBooks = searchBooks(filteredBooks);
+  filteredBooks = searchBooks(filteredBooks);
   // filteredBooks = sortBooks(filteredBooks);
 
   console.log(filterBooks);
@@ -145,6 +145,14 @@ function filterBooks(books) {
   const [filterType, filterValue] = state.filterBy.split(":");
 
   return books.filter((book) => book[filterType] === filterValue);
+}
+
+function searchBooks(books) {
+  return books.filter(
+    (book) =>
+      book.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(state.searchTerm.toLowerCase()),
+  );
 }
 
 // =================================================
