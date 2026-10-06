@@ -29,7 +29,7 @@ function createFilterSelectOptions() {
   genreGroup.label = "Genres";
   const allOption = document.createElement("option");
   allOption.value = "all";
-  allOption.textContent = "All";
+  allOption.textContent = "All Books";
   filterSelect.appendChild(allOption);
   const uniqueGenres = [...new Set(books.map((book) => book.genre))];
 
@@ -63,7 +63,7 @@ function createFilterSelectOptions() {
 function createSortSelectOptions() {
   const defaultOption = document.createElement("option");
   defaultOption.value = "default";
-  defaultOption.textContent = "Default";
+  defaultOption.textContent = "Default Book Order";
   sortSelect.appendChild(defaultOption);
 
   const titleOption = document.createElement("option");
@@ -181,22 +181,16 @@ function sortBooks(books) {
 filterSelect.addEventListener("change", (e) => {
   state.filterBy = e.target.value;
   updateBooks();
-
-  console.log(state.filterBy);
 });
 
 searchInput.addEventListener("input", (e) => {
   state.searchTerm = e.target.value;
   updateBooks();
-
-  console.log(state.searchTerm);
 });
 
 sortSelect.addEventListener("change", (e) => {
   state.sortBy = e.target.value;
   updateBooks();
-
-  console.log(state.sortBy);
 });
 
 // =================================================
